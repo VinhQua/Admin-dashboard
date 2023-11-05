@@ -24,6 +24,8 @@ const settingSlice = createSlice({
     setTheme: (state, { payload }) => {
       localStorage.setItem("theme", payload);
       state.currentTheme = payload;
+      localStorage.setItem("mode", "light");
+      state.currentMode = "light";
       document.documentElement.setAttribute("data-theme", payload);
     },
   },
