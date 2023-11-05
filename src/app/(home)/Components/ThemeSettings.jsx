@@ -1,22 +1,17 @@
 "use client";
 import { themeColors } from "../../../data/dummy";
-import { closeSettings } from "@/features/settings/settingSlice";
+import {
+  closeSettings,
+  setMode,
+  setTheme,
+} from "@/features/settings/settingSlice";
 import React, { useState } from "react";
 import { MdOutlineCancel } from "react-icons/md";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { BsCheck } from "react-icons/bs";
-const currentTheme = () => {
-  return localStorage.getItem("theme") || "";
-};
 
 const ThemeSettings = () => {
-  const [currentColor, setCurrentColor] = useState(currentTheme());
-
-  const themeChange = (theme) => {
-    document.documentElement.setAttribute("data-theme", theme);
-    localStorage.setItem("theme", theme);
-    setCurrentColor(theme);
-  };
+  const { currentMode, currentTheme } = useSelector((store) => store.settings);
 
   const dispatch = useDispatch();
   return (
@@ -40,10 +35,10 @@ const ThemeSettings = () => {
               type="radio"
               name="theme"
               id="light"
-              value="Light"
+              value="light"
               className="cursor-pointer"
-              // set mode
-              // check
+              onChange={(e) => dispatch(setMode(e.target.value))}
+              checked={currentMode === "light"}
             />
             <label htmlFor="light" className="ml-2 text-md cursor-pointer">
               Light
@@ -53,10 +48,9 @@ const ThemeSettings = () => {
                 type="radio"
                 name="theme"
                 id="dark"
-                value="Dark"
-                className="cursor-pointer"
-                // set mode
-                // check
+                value="dark"
+                onChange={(e) => dispatch(setMode(e.target.value))}
+                checked={currentMode === "dark"}
               />
               <label htmlFor="dark" className="ml-2 text-md cursor-pointer">
                 Dark
@@ -73,11 +67,11 @@ const ThemeSettings = () => {
                       type="button"
                       className="h-10 w-10 rounded-full cursor-pointer"
                       style={{ backgroundColor: item.color }}
-                      onClick={() => themeChange(item.name)}
+                      onClick={() => dispatch(setTheme(item.name))}
                     >
                       <BsCheck
                         className={`ml-2 text-2xl text-white ${
-                          item.name === currentColor ? "block" : "hidden"
+                          item.name === currentTheme ? "block" : "hidden"
                         }`}
                       />
                     </button>
