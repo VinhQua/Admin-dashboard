@@ -22,7 +22,7 @@ const ThemeSettings = () => {
           <button
             type="button"
             style={{ color: "rgb(153,171,180)", borderRadius: "50%" }}
-            className="text-2xl p-3 hover:drop-shadow-xl hover:bg-base-200"
+            className="text-2xl p-3 hover:drop-shadow-xl hover:bg-neutral-content"
             onClick={() => dispatch(closeSettings())}
           >
             <MdOutlineCancel />

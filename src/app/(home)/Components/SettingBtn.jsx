@@ -9,8 +9,7 @@ const SettingBtn = () => {
     <div className="fixed right-4 bottom-4" style={{ zIndex: "1000" }}>
       <div className="tooltip" data-tip="Settings">
         <button
-          style={{ background: "black" }}
-          className="text-3xl text-white p-3 hover:drop-shadow-xl hover:bg-base-100 rounded-full "
+          className="text-3xl bg-neutral text-secondary p-3 hover:drop-shadow-xl hover:bg-base-300 rounded-full "
           type="button"
           onClick={() => dispatch(showSettings())}
         >
