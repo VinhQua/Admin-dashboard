@@ -20,6 +20,9 @@ const config: Config = {
       borderColor: {
         color: "rgba(0,0,0,0.1)",
       },
+      backgroundImage: {
+        "hero-pattern": `url(https://i.ibb.co/MkvLDfb/Rectangle-4389.png)`,
+      },
     },
   },
   plugins: [require("daisyui")],
